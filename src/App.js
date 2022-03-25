@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import Expenses from "./components/Expenses/Expenses";
+import Mountains from "./components/Mountains/Mountains";
 
 
-const DUMMY_EXPENSES = [
+const DUMMY_MOUNTAINS = [
   {
     "name": "Ben Chonzie",
     "height": 931.0,
@@ -36,13 +36,13 @@ const DUMMY_EXPENSES = [
 ];
 
 const App = () => {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [mountains, setMountains] = useState(DUMMY_MOUNTAINS);
 
-  const addExpenseHandler = expense =>{
+  const addExpenseHandler = mountains =>{
     console.log('In App.js: ');
-    console.log(expense);
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses];
+    console.log(mountains);
+    setMountains((prevMountains) => {
+      return [mountains, ...prevMountains];
     });
 
   };
@@ -50,7 +50,7 @@ const App = () => {
   return (
     <div>
       
-      <Expenses items={expenses}></Expenses>
+      <Mountains items={mountains}></Mountains>
     </div>
   );
 }

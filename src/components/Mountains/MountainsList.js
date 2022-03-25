@@ -1,8 +1,8 @@
 import React from "react";
-import ExpenseItem from "./ExpenseItem";
-import "./ExpensesList.css";
+import MountainItem from "./MountainItem";
+import "./MountainsList.css";
 
-const ExpensesList = (props) => {
+const MountainsList = (props) => {
   if (props.items.length === 0) {
     return <h2 className="expenses-list__fallback">No items found.</h2>;
   }
@@ -10,7 +10,7 @@ const ExpensesList = (props) => {
   return (
     <ul className="expenses-list">
       {props.items.map((expense) => (
-        <ExpenseItem
+        <MountainItem
           key={expense.gridReference}
           title={expense.name}
           height={expense.height}
@@ -21,4 +21,4 @@ const ExpensesList = (props) => {
   );
 };
 
-export default ExpensesList;
+export default MountainsList;
