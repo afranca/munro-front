@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
 import "./Mountains.css";
-import ExpensesList from "./MountainsList";
+import MountainsList from "./MountainsList";
+import MountainFilter from "./MountainFilter";
 
 
 const Mountains = (props) => {
-  //const [filteredYear, setFilteredYear] = useState("2020");
+  const [filteredCategory, setFilteredCategory] = useState("all");
   
-  const filterChangeHandler = (selectedYear) => {
-    console.log("on filter handler:" + selectedYear);
-  //  setFilteredYear(selectedYear);    
+  const filterChangeHandler = (selectedCategory) => {
+    console.log("on filter handler:" + selectedCategory);
+    setFilteredCategory(selectedCategory);    
   };
- // const filteredItems = props.items.filter( expense => expense.date.getFullYear().toString() === filteredYear);
+ const filteredItems = props.items.filter( mountain => mountain.category.toString() === filteredCategory);
 
 
 
   return (
     <li>
       <Card className="expenses">
-
-        <ExpensesList items={props.items}/>
+      <MountainFilter
+          selected={filteredCategory}
+          onFilterChange={filterChangeHandler}
+        />
+        <MountainsList items={filteredItems}/>
       </Card>
     </li>
   );
