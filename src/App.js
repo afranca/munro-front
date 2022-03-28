@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Mountains from "./components/Mountains/Mountains";
+import Filter from "./components/Filters/Filter";
 
 
 const DUMMY_MOUNTAINS = [
@@ -48,8 +49,8 @@ const App = () => {
   };
 
   return (
-    <div>
-      
+    <div>      
+      <Filter/>     
       <Mountains items={mountains}></Mountains>
     </div>
   );
