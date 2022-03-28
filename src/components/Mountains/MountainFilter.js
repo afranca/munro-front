@@ -15,8 +15,6 @@ const MountainFilter = (props) => {
           <option value="ALL">All</option>
           <option value="TOP">Top</option>
           <option value="MUN">Munroe</option>
-          
-
         </select>
       </div>
     </div>
