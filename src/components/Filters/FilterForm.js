@@ -23,7 +23,7 @@ const FilterForm = (props) => {
             </div>              
         </div>
         <div className="filter-form__actions">
-            <button type="submit">Apply</button>
+            <button onClick={props.onApply}>Apply</button>
         </div>
     </form>;    
 }

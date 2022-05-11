@@ -12,7 +12,19 @@ const Mountains = (props) => {
     console.log("on filter handler:" + selectedCategory);
     setFilteredCategory(selectedCategory);    
   };
- const filteredItems = props.items.filter( mountain => mountain.category.toString() === filteredCategory);
+
+  const filtering = (mountain) => {
+    console.log(filteredCategory);
+    if (filteredCategory === 'ALL'){
+      console.log("Returning ALL"); 
+      return (mountain.category.toString() === 'MUN' || mountain.category.toString() === 'TOP');
+    } 
+    return mountain.category.toString() === filteredCategory;  
+
+  }
+
+  //const filteredItems = props.items.filter( mountain => mountain.category.toString() === filteredCategory);
+  const filteredItems = props.items.filter( filtering);
 
 
 

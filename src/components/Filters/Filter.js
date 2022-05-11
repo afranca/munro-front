@@ -7,7 +7,7 @@ import FilterForm from './FilterForm';
  
     return (
         <div className="filter">
-          <FilterForm  />
+          <FilterForm onApply={props.onApply} />
         </div>
       );
 
