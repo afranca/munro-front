@@ -4,10 +4,11 @@ import Filter from "./components/Filters/Filter";
 
 const App = () => {
 
-  const fetchMountainHandler = useCallback(async () => {
+  const fetchMountainHandler = useCallback(async (parm1) => {
+    console.log('parm1:'+parm1);
     setIsLoading(true);
     setError(null);
-    //console.log('Before fecth');
+    
     try{      
       const response = await fetch('http://localhost:8080/api/mountain/list',{
         method: 'GET',        
@@ -31,8 +32,6 @@ const App = () => {
           category: data[dataIndex].category
         });
       }
-      //console.log('1st Mountain:' + loadedMountains[0].category);
-      //console.log('Loaded Mountains:' + loadedMountains);
       setMountains(loadedMountains);
     } catch(error){
       setError(error.message);
@@ -44,7 +43,37 @@ const App = () => {
     console.log('Before User Effect');
     fetchMountainHandler();
     console.log('After User Effect');
-  }, [fetchMountainHandler]);  
+  }, [fetchMountainHandler]); 
+  
+  const applyFilterHandler = async (aplliedFilter) =>  {
+    // This should be wrapped with Try/Catch
+    console.log('Name:'+aplliedFilter.name);
+    console.log('Height:'+aplliedFilter.height);
+    console.log('Category:'+aplliedFilter.category);
+
+    let fecthUrl = 'http://localhost:8080/api/mountain/list';
+    if (aplliedFilter.category.length > 0 && aplliedFilter.category != 'ALL'){
+      fecthUrl = fecthUrl+'?category='+aplliedFilter.category.trim();
+    }
+    console.log('fecthUrl:'+fecthUrl);
+    const response = await fetch(fecthUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    const loadedMountains = [];
+    for (const dataIndex in data){
+      loadedMountains.push({
+        id: data[dataIndex].gridReference,
+        name: data[dataIndex].name,
+        height: data[dataIndex].height,
+        category: data[dataIndex].category
+      });
+    }
+    setMountains(loadedMountains);
+  }
 
   const [mountains, setMountains] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,19 +91,9 @@ const App = () => {
     content = <p>Loading ...</p>;
   }  
 
-/*
-// Looks like this is never used
-  const addExpenseHandler = mountains =>{
-    console.log('In App.js: ');
-    console.log(mountains);
-    setMountains((prevMountains) => {
-      return [mountains, ...prevMountains];
-    });
-  };
-*/
   return (
     <React.Fragment>     
-      <Filter onApply={fetchMountainHandler}/>     
+      <Filter onApplyFilter={applyFilterHandler}/>     
       {content}
     </React.Fragment>
   );
