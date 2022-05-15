@@ -47,14 +47,32 @@ const App = () => {
   
   const applyFilterHandler = async (aplliedFilter) =>  {
     // This should be wrapped with Try/Catch
-    console.log('Name:'+aplliedFilter.name);
-    console.log('Height:'+aplliedFilter.height);
-    console.log('Category:'+aplliedFilter.category);
 
     let fecthUrl = 'http://localhost:8080/api/mountain/list';
-    if (aplliedFilter.category.length > 0 && aplliedFilter.category != 'ALL'){
-      fecthUrl = fecthUrl+'?category='+aplliedFilter.category.trim();
+    let parmCount=1;
+    if (aplliedFilter.name && aplliedFilter.name.length > 0){
+      console.log("aplliedFilter.name.length:"+aplliedFilter.name.length);
+      fecthUrl = fecthUrl+'?name='+aplliedFilter.name.trim();
+      parmCount++;
     }
+    if (aplliedFilter.height && aplliedFilter.height.length > 0){
+      if (parmCount>1){
+        fecthUrl = fecthUrl+'&height='+aplliedFilter.height.trim();
+      } else{
+        fecthUrl = fecthUrl+'?height='+aplliedFilter.height.trim();
+      }
+      parmCount++;
+      
+    }    
+    if (aplliedFilter.category && aplliedFilter.category.length > 0 && aplliedFilter.category != 'ALL'){
+      if (parmCount>1){
+        fecthUrl = fecthUrl+'&category='+aplliedFilter.category.trim();
+      } else {
+        fecthUrl = fecthUrl+'?category='+aplliedFilter.category.trim();
+      }
+      parmCount++;
+    }
+
     console.log('fecthUrl:'+fecthUrl);
     const response = await fetch(fecthUrl, {
       method: 'GET',

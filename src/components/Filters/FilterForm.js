@@ -10,12 +10,11 @@ const FilterForm = (props) => {
         event.preventDefault();
         console.log("On Form Submit:"+event.value);
         // could add validation here...
-
         const appliedFilter = {
-            name: nameRef.current.value,
-            height: heightRef.current.value,
-            category: categoryRef.current.value,
-        };
+             name: nameRef.current.value,
+             height: heightRef.current.value,
+             category: categoryRef.current.value 
+        };        
         props.onApplyFilter(appliedFilter);        
     } 
     
