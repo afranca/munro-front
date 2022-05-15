@@ -55,14 +55,21 @@ const App = () => {
       fecthUrl = fecthUrl+'?name='+aplliedFilter.name.trim();
       parmCount++;
     }
-    if (aplliedFilter.height && aplliedFilter.height.length > 0){
+    if (aplliedFilter.minHeight && aplliedFilter.minHeight.length > 0){
       if (parmCount>1){
-        fecthUrl = fecthUrl+'&height='+aplliedFilter.height.trim();
+        fecthUrl = fecthUrl+'&minHeight='+aplliedFilter.minHeight.trim();
       } else{
-        fecthUrl = fecthUrl+'?height='+aplliedFilter.height.trim();
+        fecthUrl = fecthUrl+'?minHeight='+aplliedFilter.minHeight.trim();
       }
-      parmCount++;
-      
+      parmCount++;   
+    } 
+    if (aplliedFilter.maxHeight && aplliedFilter.maxHeight.length > 0){
+      if (parmCount>1){
+        fecthUrl = fecthUrl+'&maxHeight='+aplliedFilter.maxHeight.trim();
+      } else{
+        fecthUrl = fecthUrl+'?maxHeight='+aplliedFilter.maxHeight.trim();
+      }
+      parmCount++;   
     }    
     if (aplliedFilter.category && aplliedFilter.category.length > 0 && aplliedFilter.category != 'ALL'){
       if (parmCount>1){
