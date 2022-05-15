@@ -55,6 +55,7 @@ const App = () => {
       fecthUrl = fecthUrl+'?name='+aplliedFilter.name.trim();
       parmCount++;
     }
+
     if (aplliedFilter.minHeight && aplliedFilter.minHeight.length > 0){
       if (parmCount>1){
         fecthUrl = fecthUrl+'&minHeight='+aplliedFilter.minHeight.trim();
@@ -79,7 +80,22 @@ const App = () => {
       }
       parmCount++;
     }
-
+    if (aplliedFilter.sortBy && aplliedFilter.sortBy.length > 0 ){
+      if (parmCount>1){
+        fecthUrl = fecthUrl+'&sortBy='+aplliedFilter.sortBy.trim();
+      } else {
+        fecthUrl = fecthUrl+'?sortBy='+aplliedFilter.sortBy.trim();
+      }
+      parmCount++;
+    }
+    if (aplliedFilter.orderBy && aplliedFilter.orderBy.length > 0 ){
+      if (parmCount>1){
+        fecthUrl = fecthUrl+'&sortOrder='+aplliedFilter.orderBy.trim();
+      } else {
+        fecthUrl = fecthUrl+'?sortOrder='+aplliedFilter.orderBy.trim();
+      }
+      parmCount++;
+    }
     console.log('fecthUrl:'+fecthUrl);
     const response = await fetch(fecthUrl, {
       method: 'GET',

@@ -9,9 +9,9 @@ const MountainsList = (props) => {
 
   return (
     <ul className="expenses-list">
-      {props.items.map((expense) => (
+      {props.items.map((expense, index) => (
         <MountainItem
-          key={expense.gridReference}
+          key={expense.id+index}
           title={expense.name}
           height={expense.height}
           category={expense.category}
