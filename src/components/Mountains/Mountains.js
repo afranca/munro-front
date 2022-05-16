@@ -13,22 +13,6 @@ const Mountains = (props) => {
     setFilteredCategory(selectedCategory);    
   };
 
-  /* not being used at the moment
-  const filtering = (mountain) => {
-    console.log(filteredCategory);
-    if (filteredCategory === 'ALL' || filteredCategory === 'all'){
-      console.log("Returning ALL"); 
-      return (mountain.category.toString() === 'MUN' || mountain.category.toString() === 'TOP');
-    } 
-    return mountain.category.toString() === filteredCategory;  
-
-  }
-
-  //const filteredItems = props.items.filter( mountain => mountain.category.toString() === filteredCategory);
-  const filteredItems = props.items.filter( filtering);
-*/
-
-
   return (
     <li>
       <Card className="expenses">

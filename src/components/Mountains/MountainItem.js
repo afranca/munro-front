@@ -9,12 +9,6 @@ const MountainItem = (props) => {
   //array destructuring
   const [title, setTitle] = useState(props.title);
   
-  //const clickHandler = () =>{
-  //  setTitle('Title Updated');
-  //  console.log(title);
-  // <button onClick={clickHandler}>Change Title</button>
-  //}
-
   return (
     <Card className='expense-item'>
       <MountainCategory category = {props.category}></MountainCategory>

@@ -46,8 +46,9 @@ const App = () => {
   }, [fetchMountainHandler]); 
   
   const applyFilterHandler = async (aplliedFilter) =>  {
-    // This should be wrapped with Try/Catch
-
+    setIsLoading(true);
+    setError(null);
+  
     let fecthUrl = 'http://localhost:8080/api/mountain/list';
     let parmCount=1;
     if (aplliedFilter.name && aplliedFilter.name.length > 0){
@@ -96,24 +97,29 @@ const App = () => {
       }
       parmCount++;
     }
-    console.log('fecthUrl:'+fecthUrl);
-    const response = await fetch(fecthUrl, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await response.json();
-    const loadedMountains = [];
-    for (const dataIndex in data){
-      loadedMountains.push({
-        id: data[dataIndex].gridReference,
-        name: data[dataIndex].name,
-        height: data[dataIndex].height,
-        category: data[dataIndex].category
+    console.log('Request: '+fecthUrl);
+    try{
+      const response = await fetch(fecthUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
+      const data = await response.json();
+      const loadedMountains = [];
+      for (const dataIndex in data){
+        loadedMountains.push({
+          id: data[dataIndex].gridReference,
+          name: data[dataIndex].name,
+          height: data[dataIndex].height,
+          category: data[dataIndex].category
+        });
+      }
+      setMountains(loadedMountains);
+    } catch(error){
+      setError(error.message);
     }
-    setMountains(loadedMountains);
+    setIsLoading(false);
   }
 
   const [mountains, setMountains] = useState([]);
