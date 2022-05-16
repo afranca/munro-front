@@ -7,7 +7,7 @@ const FilterForm = (props) => {
     const maxHeightRef = useRef('');
     const categoryRef = useRef('');
     const sortByRef = useRef('');
-    const orderByRef = useRef('');
+    const sortOrderRef = useRef('');
 
     function submitHandler(event) {
         event.preventDefault();
@@ -19,7 +19,7 @@ const FilterForm = (props) => {
              maxHeight: maxHeightRef.current.value,
              category: categoryRef.current.value,
              sortBy: sortByRef.current.value,
-             orderBy: orderByRef.current.value
+             sortOrder: sortOrderRef.current.value
 
         };        
         props.onApplyFilter(appliedFilter);        
@@ -61,7 +61,7 @@ const FilterForm = (props) => {
             </div>                    
             <div className="filter-form__control">
                 <label>Order By</label>
-                <select ref={orderByRef} onChange={dropdownChangeHandler}>
+                <select ref={sortOrderRef} onChange={dropdownChangeHandler}>
                     <option value="">No Order</option>
                     <option value="asc">ASC</option>
                     <option value="desc">DESC</option>

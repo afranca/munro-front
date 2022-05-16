@@ -88,11 +88,11 @@ const App = () => {
       }
       parmCount++;
     }
-    if (aplliedFilter.orderBy && aplliedFilter.orderBy.length > 0 ){
+    if (aplliedFilter.sortOrder && aplliedFilter.sortOrder.length > 0 ){
       if (parmCount>1){
-        fecthUrl = fecthUrl+'&sortOrder='+aplliedFilter.orderBy.trim();
+        fecthUrl = fecthUrl+'&sortOrder='+aplliedFilter.sortOrder.trim();
       } else {
-        fecthUrl = fecthUrl+'?sortOrder='+aplliedFilter.orderBy.trim();
+        fecthUrl = fecthUrl+'?sortOrder='+aplliedFilter.sortOrder.trim();
       }
       parmCount++;
     }
