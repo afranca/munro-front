@@ -8,6 +8,7 @@ const FilterForm = (props) => {
     const categoryRef = useRef('');
     const sortByRef = useRef('');
     const sortOrderRef = useRef('');
+    const maxRecordsRef = useRef('');
 
     function submitHandler(event) {
         event.preventDefault();
@@ -19,8 +20,8 @@ const FilterForm = (props) => {
              maxHeight: maxHeightRef.current.value,
              category: categoryRef.current.value,
              sortBy: sortByRef.current.value,
-             sortOrder: sortOrderRef.current.value
-
+             sortOrder: sortOrderRef.current.value,
+             maxRecords: maxRecordsRef.current.value
         };        
         props.onApplyFilter(appliedFilter);        
     } 
@@ -66,7 +67,11 @@ const FilterForm = (props) => {
                     <option value="asc">ASC</option>
                     <option value="desc">DESC</option>
                 </select>
-            </div>                
+            </div>  
+            <div className="filter-form__control">
+                <label>Max Records</label>
+                <input type='number' id='maxRecords' ref={maxRecordsRef} min="1" step="1" />
+            </div>                           
         </div>
         <div className="filter-form__actions">
             <button>Apply</button>

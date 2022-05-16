@@ -97,6 +97,14 @@ const App = () => {
       }
       parmCount++;
     }
+    if (aplliedFilter.maxRecords && aplliedFilter.maxRecords.length > 0 ){
+      if (parmCount>1){
+        fecthUrl = fecthUrl+'&maxRecords='+aplliedFilter.maxRecords.trim();
+      } else {
+        fecthUrl = fecthUrl+'?maxRecords='+aplliedFilter.maxRecords.trim();
+      }
+      parmCount++;
+    }    
     console.log('Request: '+fecthUrl);
     try{
       const response = await fetch(fecthUrl, {
