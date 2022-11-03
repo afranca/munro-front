@@ -49,6 +49,7 @@ const App = () => {
   const applyFilterHandler = async (aplliedFilter) =>  {
     setIsLoading(true);
     setError(null);
+    setCurrentAplliedFilter(aplliedFilter);
   
     let fecthUrl = 'http://localhost:8080/api/mountain/list';
     let parmCount=1;
@@ -144,6 +145,8 @@ const App = () => {
       });
       const data = await response.json();
       console.log(data);
+      console.log(currentAplliedFilter);
+      applyFilterHandler(currentAplliedFilter);
  
     } catch(error){
       setError(error.message);
@@ -153,6 +156,7 @@ const App = () => {
   const [mountains, setMountains] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentAplliedFilter, setCurrentAplliedFilter] = useState();
 
   let content = <p>Found no items</p>
 
