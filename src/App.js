@@ -1,6 +1,7 @@
 import React, {useState, useCallback, useEffect} from "react";
 import Mountains from "./components/Mountains/Mountains";
 import Filter from "./components/Filters/Filter";
+import NewMountain from "./components/NewMountain/NewMountain";
 
 const App = () => {
 
@@ -48,6 +49,7 @@ const App = () => {
   const applyFilterHandler = async (aplliedFilter) =>  {
     setIsLoading(true);
     setError(null);
+    setCurrentAplliedFilter(aplliedFilter);
   
     let fecthUrl = 'http://localhost:8080/api/mountain/list';
     let parmCount=1;
@@ -73,7 +75,7 @@ const App = () => {
       }
       parmCount++;   
     }    
-    if (aplliedFilter.category && aplliedFilter.category.length > 0 && aplliedFilter.category != 'ALL'){
+    if (aplliedFilter.category && aplliedFilter.category.length > 0 && aplliedFilter.category !== 'ALL'){
       if (parmCount>1){
         fecthUrl = fecthUrl+'&category='+aplliedFilter.category.trim();
       } else {
@@ -130,9 +132,31 @@ const App = () => {
     setIsLoading(false);
   }
 
+  const saveNewMountainHanlder = async (newMountainData) =>{
+    let fecthUrl = 'http://localhost:8080/api/mountain/create';
+    console.log('Request: '+fecthUrl);
+    try{
+      const response = await fetch(fecthUrl, {
+        method: 'POST',
+        body: JSON.stringify(newMountainData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await response.json();
+      console.log(data);
+      console.log(currentAplliedFilter);
+      applyFilterHandler(currentAplliedFilter);
+ 
+    } catch(error){
+      setError(error.message);
+    }   
+  }
+
   const [mountains, setMountains] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentAplliedFilter, setCurrentAplliedFilter] = useState();
 
   let content = <p>Found no items</p>
 
@@ -149,6 +173,7 @@ const App = () => {
   return (
     <React.Fragment>     
       <Filter onApplyFilter={applyFilterHandler}/>     
+      <NewMountain onSaveNewMountain={saveNewMountainHanlder}/>
       {content}
     </React.Fragment>
   );

@@ -25,7 +25,12 @@ const FilterForm = (props) => {
         };        
         props.onApplyFilter(appliedFilter);        
     } 
-    
+
+    const cancelFormHandler = (event) =>{
+        console.log(event.target.value); 
+        props.onCancel();      
+    };    
+
     const dropdownChangeHandler = (event) =>{
         console.log(event.target.value);       
     };    
@@ -74,6 +79,7 @@ const FilterForm = (props) => {
             </div>                           
         </div>
         <div className="filter-form__actions">
+            <button type='text' onClick={cancelFormHandler}>Cancel</button>
             <button>Apply</button>
         </div>
     </form>;    
