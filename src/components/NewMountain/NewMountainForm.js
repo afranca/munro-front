@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./NewMountainForm.module.css";
+import classes from  "./NewMountainForm.module.css";
 
 
 const NewMountainForm = props => {
@@ -40,23 +40,23 @@ const NewMountainForm = props => {
 
     return(
         <form onSubmit={onSubmitHandler}>
-            <div className="newMountain__controls">
-                <div className="newMountain__control">
+            <div className={classes.newMountain__controls}>
+                <div className={classes.newMountain__control}>
                     <label>Name</label>
                     <input type='text' value={enteredName} onChange={nameChangeHandler} />
                 </div>
-                <div className="newMountain__control">
+                <div className={classes.newMountain__control}>
                     <label>Category</label>
                     <input type='text' value={enteredCategory} onChange={categoryChangeHandler} />
                 </div>
-                <div className="newMountain__control">
+                <div className={classes.newMountain__control}>
                     <label>Height</label>
                     <input type='text' value={enteredHeight} onChange={heightChangeHandler} />
                 </div>
             </div>
-            <div className="newMountain__actions">
+            <div className={classes.newMountain__actions}>
                 <button type="button" onClick={onCancelHandler}>Cancel</button>
-                <button type="submit">Submit</button>
+                <button type="submit">Add New</button>
             </div>
 
         </form>        
