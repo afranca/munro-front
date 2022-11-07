@@ -51,6 +51,7 @@ const App = () => {
     setIsLoading(true);
     setError(null);
     setCurrentAplliedFilter(aplliedFilter);
+    setCurrentPage(1);
   
     let fecthUrl = 'http://localhost:8080/api/mountain/list';
     let parmCount=1;
