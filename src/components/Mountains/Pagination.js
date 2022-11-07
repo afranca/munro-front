@@ -1,5 +1,4 @@
 import React from 'react'
-import classes from './Pagination.module.css';
 
 const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
 
@@ -27,7 +26,13 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   let firstPageNumberOnDisplay;
   if (currentPage <= 3){
     firstPageNumberOnDisplay = 1;
-    lastPageNumberOnDisplay = 5;
+    // This is a fix for searches that return
+    // less than 5 pages
+    if (lastPageNumber < 5){
+        lastPageNumberOnDisplay = lastPageNumber;        
+    } else {
+        lastPageNumberOnDisplay = 5;
+    }
   } else if (currentPage >= lastPageNumber - 3){
     firstPageNumberOnDisplay = lastPageNumber - 4;
     lastPageNumberOnDisplay = lastPageNumber;
@@ -41,33 +46,33 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   }
   return (
     <nav>
-        <ul className={classes.pagination}>
-        <li key={Math.random()} className={classes.pageItem}>
-            <a href='!#' className={classes.pageLink} onClick={ () => changePageHandler(1) }>
+        <ul className='pagination'>
+        <li key={Math.random()} className='page-item'>
+            <a href='!#' className='page-link' onClick={ () => changePageHandler(1) }>
                 «
             </a>    
         </li>
-        <li key={Math.random()} className={classes.pageItem}>
-            <a href='!#' className={classes.pageLink} onClick={ () => changePageHandler(previousPage) }>
+        <li key={Math.random()} className='page-item'>
+            <a href='!#' className='page-link' onClick={ () => changePageHandler(previousPage) }>
                 ⟨   
             </a>          
         </li>
 
             {pageNumbers.map( (number) => (
-                <li key={number} className={classes.pageItem}>
-                    <a href='!#' className={classes.pageLink} onClick={ () => changePageHandler(number) }>
+                <li key={number} className='page-item'>
+                    <a href='!#' className='page-link' onClick={ () => changePageHandler(number) }>
                         {number}
                     </a>
                 </li>
             ))}
 
-        <li key={Math.random()} className={classes.pageItem}>
-            <a href='!#' className={classes.pageLink} onClick={ () => changePageHandler(nextPage) }>
+        <li key={Math.random()} className='page-item'>
+            <a href='!#' className='page-link' onClick={ () => changePageHandler(nextPage) }>
                 ⟩
             </a>              
         </li>
-        <li key={Math.random()} className={classes.pageItem}>
-            <a href='!#' className={classes.pageLink} onClick={ () => changePageHandler(lastPageNumber) }>
+        <li key={Math.random()} className='page-item'>
+            <a href='!#' className='page-link' onClick={ () => changePageHandler(lastPageNumber) }>
                 »
             </a>        
         </li>            
