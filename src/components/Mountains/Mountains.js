@@ -3,6 +3,7 @@ import Card from "../UI/Card";
 import "./Mountains.css";
 import MountainsList from "./MountainsList";
 import MountainFilter from "./MountainFilter";
+import Pagination from "./Pagination";
 
 
 const Mountains = (props) => {
@@ -14,11 +15,16 @@ const Mountains = (props) => {
   };
 
   return (
-    <li>
-      <Card className="expenses">
+    <div>
+      <Card className="mountains">
+      <Pagination 
+        postsPerPage={props.postsPerPage} 
+        totalPosts={props.totalPosts}
+        paginate={props.paginate}
+        currentPage={props.currentPage}/>
         <MountainsList items={props.items}/>
       </Card>
-    </li>
+    </div>
   );
 };
 

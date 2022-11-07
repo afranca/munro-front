@@ -4,18 +4,20 @@ import "./MountainsList.css";
 
 const MountainsList = (props) => {
   if (props.items.length === 0) {
-    return <h2 className="expenses-list__fallback">No items found.</h2>;
+    return <h2 className="mountains-list__fallback">No items found.</h2>;
   }
 
   return (
-    <ul className="expenses-list">
-      {props.items.map((expense, index) => (
+    <ul className="list-group mb-4">
+      {props.items.map((item, index) => (
+        <li key={item.id+index} className='list-group-item'>
         <MountainItem
-          key={expense.id+index}
-          title={expense.name}
-          height={expense.height}
-          category={expense.category}
+          key={item.id+index}
+          title={item.name}
+          height={item.height}
+          category={item.category}
         />
+        </li>
       ))}
     </ul>
   );
