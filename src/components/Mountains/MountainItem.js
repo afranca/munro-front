@@ -10,11 +10,11 @@ const MountainItem = (props) => {
   const [title, setTitle] = useState(props.title);
   
   return (
-    <Card className='expense-item'>
+    <Card className='mountain-item'>
       <MountainCategory category = {props.category}></MountainCategory>
-      <div className='expense-item__description'>        
+      <div className='mountain-item__description'>        
         <h2>{title}</h2>
-        <div className='expense-item__price'>{props.height} m</div>
+        <div className='mountain-item__height'>{props.height} m</div>
       </div>      
     </Card>
   );

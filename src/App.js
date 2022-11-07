@@ -176,9 +176,7 @@ const App = () => {
   let content = <p>Found no items</p>
 
   if (mountains.length > 0){
-    content = <p>
-
-    
+    content = <p>    
         <Mountains items={currentMountains}
         postsPerPage={mountainsPerPage} 
         totalPosts={mountains.length}

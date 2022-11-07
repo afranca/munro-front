@@ -1,9 +1,9 @@
-.expenses-list {
+.mountains-list {
     list-style: none;
     padding: 0;
   }
   
-  .expenses-list__fallback {
+  .mountains-list__fallback {
     color: white;
     text-align: center;
   }

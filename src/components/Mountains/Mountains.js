@@ -16,7 +16,7 @@ const Mountains = (props) => {
 
   return (
     <li>
-      <Card className="expenses">
+      <Card className="mountains">
       <Pagination 
         postsPerPage={props.postsPerPage} 
         totalPosts={props.totalPosts}
