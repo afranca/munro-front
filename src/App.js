@@ -2,6 +2,7 @@ import React, {useState, useCallback, useEffect} from "react";
 import Mountains from "./components/Mountains/Mountains";
 import Filter from "./components/Filters/Filter";
 import NewMountain from "./components/NewMountain/NewMountain";
+import Pagination from "./components/Mountains/Pagination";
 
 const App = () => {
 
@@ -158,10 +159,32 @@ const App = () => {
   const [error, setError] = useState(null);
   const [currentAplliedFilter, setCurrentAplliedFilter] = useState();
 
+  // State for Pagination Controls
+  const [currentPage,  setCurrentPage] = useState(1);
+  const [mountainsPerPage, setMountainsPerPage] = useState(5);
+  
+  // Get current mountain
+  const indexOfLastMountain = currentPage * mountainsPerPage;
+  const indexOfFirstMountain = indexOfLastMountain - mountainsPerPage;
+  const currentMountains = mountains.slice(indexOfFirstMountain, indexOfLastMountain) ;
+  
+  //Change page
+  const paginateHandler = (pageNumber) =>{
+    setCurrentPage(pageNumber);
+  }
+
   let content = <p>Found no items</p>
 
   if (mountains.length > 0){
-    content = <p><Mountains items={mountains}></Mountains></p>;
+    content = <p>
+
+    
+        <Mountains items={currentMountains}
+        postsPerPage={mountainsPerPage} 
+        totalPosts={mountains.length}
+        paginate={paginateHandler}
+        currentPage={currentPage}/>
+        </p>;
   }
   if (error){
     content = <p>{error}</p>;
