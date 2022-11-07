@@ -1,8 +1,8 @@
-.expense-date {
+.mountain-category {
     display: flex;
     flex-direction: column;
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 4.5rem;
+    height: 3rem;
     border: 1px solid #ececec;
     background-color: #2a2a2a;
     color: white;
@@ -11,16 +11,16 @@
     justify-content: center;
   }
   
-  .expense-date__month {
+  .mountain-category__month {
     font-size: 0.75rem;
     font-weight: bold;
   }
   
-  .expense-date__year {
+  .mountain-category__year {
     font-size: 0.75rem;
   }
   
-  .expense-date__day {
+  .mountain-category__day {
     font-size: 1.5rem;
     font-weight: bold;
   }

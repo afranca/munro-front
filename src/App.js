@@ -176,13 +176,13 @@ const App = () => {
   let content = <p>Found no items</p>
 
   if (mountains.length > 0){
-    content = <p>    
+    content =     
         <Mountains items={currentMountains}
         postsPerPage={mountainsPerPage} 
         totalPosts={mountains.length}
         paginate={paginateHandler}
         currentPage={currentPage}/>
-        </p>;
+        ;
   }
   if (error){
     content = <p>{error}</p>;
@@ -195,7 +195,9 @@ const App = () => {
     <React.Fragment>     
       <Filter onApplyFilter={applyFilterHandler}/>     
       <NewMountain onSaveNewMountain={saveNewMountainHanlder}/>
-      {content}
+      <div className="container mt-5">
+        {content}
+      </div>
     </React.Fragment>
   );
 }

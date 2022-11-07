@@ -8,14 +8,16 @@ const MountainsList = (props) => {
   }
 
   return (
-    <ul className="mountains-list">
-      {props.items.map((expense, index) => (
+    <ul className="list-group mb-4">
+      {props.items.map((item, index) => (
+        <li key={item.id+index} className='list-group-item'>
         <MountainItem
-          key={expense.id+index}
-          title={expense.name}
-          height={expense.height}
-          category={expense.category}
+          key={item.id+index}
+          title={item.name}
+          height={item.height}
+          category={item.category}
         />
+        </li>
       ))}
     </ul>
   );

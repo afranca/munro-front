@@ -15,7 +15,7 @@ const Mountains = (props) => {
   };
 
   return (
-    <li>
+    <div>
       <Card className="mountains">
       <Pagination 
         postsPerPage={props.postsPerPage} 
@@ -24,7 +24,7 @@ const Mountains = (props) => {
         currentPage={props.currentPage}/>
         <MountainsList items={props.items}/>
       </Card>
-    </li>
+    </div>
   );
 };
 

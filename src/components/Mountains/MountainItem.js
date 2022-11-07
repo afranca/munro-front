@@ -11,8 +11,8 @@ const MountainItem = (props) => {
   
   return (
     <Card className='mountain-item'>
-      <MountainCategory category = {props.category}></MountainCategory>
       <div className='mountain-item__description'>        
+        <MountainCategory category = {props.category}></MountainCategory>
         <h2>{title}</h2>
         <div className='mountain-item__height'>{props.height} m</div>
       </div>      
